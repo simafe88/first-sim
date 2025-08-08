@@ -1,5 +1,3 @@
-# first-sim
-just testing
 import requests
 import os
 from dotenv import load_dotenv
@@ -14,11 +12,18 @@ def get_weather(city):
         "q": city,
         "appid": API_KEY,
         "units": "metric",
-        "lang": "fa"
+        "lang": "en"
     }
     response = requests.get(BASE_URL, params=params)
     data = response.json()
 
     if response.status_code == 200:
-        print(f"آب‌وهوا در {city}:")
-        print(f"دمای فعلی: {data['main']['te]()
+        print(f"Weather in {city}:")
+        print(f"Temperature: {data['main']['temp']}°C")
+        print(f"Condition: {data['weather'][0]['description']}")
+    else:
+        print("City not found or something went wrong.")
+
+if __name__ == "__main__":
+    city = input("Enter city name: ")
+    get_weather(city)
